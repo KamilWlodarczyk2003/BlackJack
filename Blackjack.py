@@ -10,6 +10,9 @@ dealer_cards=[cards[randint(0,12)]]
 player_cards=[cards[randint(0,12)], cards[randint(0,12)]]
 
 def BlackJack():
+    global cards
+    global player_cards
+    global dealer_cards
     answer="y"
     while answer=="y":
         player_score=sum(player_cards)
@@ -32,11 +35,12 @@ def BlackJack():
         print("")
         if answer=="y":
             player_cards.append(cards[randint(0,12)])
-
-    dealer_cards.append(cards[randint(0,12)])
+    
     dealer_score=sum(dealer_cards)
+
     while dealer_score<17:
         dealer_cards.append(cards[randint(0,12)])
+        dealer_score=sum(dealer_cards)
         if dealer_score > 21:
             if 11 in dealer_cards:
                 dealer_cards[dealer_cards.index(11)]=1
@@ -54,7 +58,7 @@ def BlackJack():
     elif dealer_score > player_score:
         print(f"Dealers cards: {dealer_cards} current score = {dealer_score}")
         print(f"Your cards: {player_cards} current score = {player_score}")
-        print("Dealer winds")
+        print("Dealer wins")
     elif player_score > dealer_score:
         print(f"Dealers cards: {dealer_cards} current score = {dealer_score}")
         print(f"Your cards: {player_cards} current score = {player_score}")
